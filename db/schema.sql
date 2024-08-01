@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS cats_db;
+CREATE DATABASE cats_db;
+
