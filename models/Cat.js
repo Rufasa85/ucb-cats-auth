@@ -15,6 +15,9 @@ Cat.init(
     },
     age: {
       type: DataTypes.INTEGER,
+      validate: {
+        min: 0,
+      },
     },
     isCute: {
       type: DataTypes.BOOLEAN,

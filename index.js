@@ -9,7 +9,7 @@ app.use(express.json());
 const allRoutes = require("./controllers");
 app.use(allRoutes);
 
-sequelize.sync().then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`listenin on port ${PORT}`);
   });
