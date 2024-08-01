@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Cat } = require("../models");
+const { Cat, User } = require("../models");
 
 router.get("/", (req, res) => {
   Cat.findAll()
@@ -15,7 +15,9 @@ router.get("/", (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const thisCat = await Cat.findByPk(req.params.id);
+    const thisCat = await Cat.findByPk(req.params.id, {
+      include: [User],
+    });
     res.json(thisCat);
   } catch (err) {
     console.log(err);
@@ -29,6 +31,7 @@ router.post("/", (req, res) => {
     color: req.body.color,
     age: req.body.age,
     isCute: req.body.isCute,
+    UserId: req.body.UserId,
   })
     .then((newCat) => {
       res.json(newCat);
@@ -46,6 +49,7 @@ router.put("/:id", (req, res) => {
       color: req.body.color,
       age: req.body.age,
       isCute: req.body.isCute,
+      UserId: req.body.UserId,
     },
     {
       where: {
